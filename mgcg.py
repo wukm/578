@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import numpy as np
-from scipy.linalg import norm
+from scipy.linalg import norm, solve
 from hw4 import cholesky
 from itertools import count
 
@@ -226,7 +226,7 @@ def vcycle(l,b,e0, A, I, Lchol):
 
     # base case
     if l == 1:
-        e_base = linalg.solve(Lchol.T,linalg.solve(Lchol,b))
+        e_base = solve(Lchol.T,solve(Lchol,b))
         return e_base
     else:
         a = A[-(l-1)]
@@ -244,7 +244,7 @@ def vcycle(l,b,e0, A, I, Lchol):
 
     return e
 
-def mgcg(A, b, n_levels,interpolation_method=None) 
+def mgcg(A, b, n_levels=0,interpolation_method=None, verbose=False):
     """
     Multigrid preconditioned Conjugate Gradient Method
     
@@ -256,9 +256,11 @@ def mgcg(A, b, n_levels,interpolation_method=None)
     # check that A is actually a power of 2 (no strategy otherwise)
     N = A.shape[0]
 
-    assert M**2 == N
+    assert 2**M == N
     
-    if n_levels != 0: 
+    preconditioned =  (n_levels != 0 and interpolation_method is not None) 
+
+    if preconditioned: 
         
         # build *all* interpolation matrices and store
         I = tuple((interpolation_method(M,n_levels,l)
@@ -275,13 +277,13 @@ def mgcg(A, b, n_levels,interpolation_method=None)
             a = interp.T @ (a @ interp)
 
         # now base_case
-        A_levels = a.copy()
+        A_1 = a
         A_levels = tuple(A_levels) # make static
 
         # you may check np.allclose(Lchol, linalg.cholesky(A_1,lower=True))
         Lchol, it_chol = cholesky(A_1)
 
-        Minv = lambda b: vcycle(max_level,b,np.zeros_like(b),A_levels,I,Lchol)    
+        Minv = lambda b: vcycle(n_levels,b,np.zeros_like(b),A_levels,I,Lchol)    
 
 
     else:
@@ -289,25 +291,40 @@ def mgcg(A, b, n_levels,interpolation_method=None)
         # i.e. preconditioner is the identity
         Minv = lambda b: b
 
-    pcg_sol, its = pcg(A,b, Minv, return_iterations=True, verbose=False)
-
-    return pcg_sol, its
+    pcg_sol, its = pcg(A,b, Minv, return_iterations=True, verbose=verbose)
+    
+    if preconditioned:
+        return pcg_sol, its, A_levels, I
+    else:
+        return pcg_sol, its, A, None
 
     
 if __name__ == "__main__":
 
     import matplotlib.pyplot as plt
-
-    M = 13
-    n_levels = 6
-
-    A = make_system(M)
-
-    # normalized one vector
-    bee = np.ones((M**2,1)) / 2**(M/2)
+    from time import time
     
-    sol, its = mgcg(A, bee, n_levels, interpolation_method=interpolation_matrix_2)
+    test_sizes = [(11,6), (12,7), (13,8)]   
+    
+    for M,n_levels in test_sizes:
+        A = make_system(M)
+        # normalized one vector
+        bee = np.ones((2**M,1)) / 2**(M/2)
+        
 
-    ### this shows effect of preconditioning, looks like two arches
-    plt.scatter(np.arange(pcg_sol.size), pcg_sol)
-    #plt.show()
+        for int_method in (interpolation_matrix, interpolation_matrix_2, None):
+    
+            t = time()
+            pcg_sol, its, A_levels, I = mgcg(A, bee, n_levels,
+            interpolation_method=int_method, verbose=False)
+            elapsed = time() - t 
+            print('_'*60)
+            print("M=", M, "L=", n_levels) 
+            print("method:", str(int_method))
+            print('\t',its, "iterations")
+            print('\t',"time elapsed=", elapsed)
+            print('_'*60)
+
+        #this shows effect of preconditioning, looks like two arches
+        #plt.scatter(np.arange(pcg_sol.size), pcg_sol)
+        #plt.show()

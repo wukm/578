@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.2)  17 DEC 2016 00:22
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.11.2)  17 DEC 2016 11:29
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**hw4_578.tex
-(./hw4_578.tex
+**final_lw.tex
+(./final_lw.tex
 LaTeX2e <2016/02/01>
 Babel <3.9q> and hyphenation patterns for 3 language(s) loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
@@ -327,8 +327,8 @@ Package: palatino 2005/04/12 PSNFSS-v9.2a (SPQR)
 )
 \c@prob=\count122
 \c@soln=\count123
- (./hw4_578.aux)
-\openout1 = `hw4_578.aux'.
+ (./final_lw.aux)
+\openout1 = `final_lw.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 161.
 LaTeX Font Info:    ... okay on input line 161.
@@ -483,68 +483,78 @@ LaTeX Font Info:    Try loading font information for U+rsfs on input line 166.
 (/usr/share/texlive/texmf-dist/tex/latex/jknapltx/ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
-LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 172.
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 172.
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 168.
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 170.
+Missing character: There is no Ï in font pplr7t!
+Missing character: There is no ‰ in font pplr7t!
+ [1
 
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
-File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 198.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 235.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <8> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 198.
-LaTeX Font Info:    Try loading font information for OML+ppl on input line 198.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 235.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 247.
 
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+) [2]
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <20.74> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 306.
+
+<scenario2_spy.png, id=15, 771.8436pt x 787.743pt>
+File: scenario2_spy.png Graphic file (type png)
+ <use scenario2_spy.png>
+Package pdftex.def Info: scenario2_spy.png used on input line 313.
+(pdftex.def)             Requested size: 398.93158pt x 407.16461pt.
+
+(./bonus_demo.py [3] [4 <./scenario2_spy.png>]
+LaTeX Font Info:    Try loading font information for OML+ppl on input line 23.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlppl.fd
 File: omlppl.fd 
 )
 LaTeX Font Info:    Font shape `OML/ppl/m/n' in size <8> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 198.
-
-<hw4_1b.png, id=1, 763.8939pt x 551.4201pt>
-File: hw4_1b.png Graphic file (type png)
- <use hw4_1b.png>
-Package pdftex.def Info: hw4_1b.png used on input line 234.
-(pdftex.def)             Requested size: 498.66258pt x 359.967pt.
-
-<hw4_spy.png, id=3, 578.16pt x 433.62pt>
-File: hw4_spy.png Graphic file (type png)
- <use hw4_spy.png>
-Package pdftex.def Info: hw4_spy.png used on input line 240.
-(pdftex.def)             Requested size: 498.66258pt x 373.99765pt.
- [1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2 <./hw4_1b.png>] [3 <./h
-w4_spy.png>]
-(./hw4_578.aux) ) 
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 23.
+)
+<runtimes.png, id=28, 578.16pt x 312.9291pt>
+File: runtimes.png Graphic file (type png)
+ <use runtimes.png>
+Package pdftex.def Info: runtimes.png used on input line 344.
+(pdftex.def)             Requested size: 398.93158pt x 215.9213pt.
+ [5] [6 <./runtimes.png>] (./final_lw.aux) ) 
 Here is how much of TeX's memory you used:
- 6932 strings out of 494953
- 100187 string characters out of 6180977
- 211346 words of memory out of 5000000
- 10044 multiletter control sequences out of 15000+600000
- 25042 words of font info for 86 fonts, out of 8000000 for 9000
+ 6990 strings out of 494953
+ 100769 string characters out of 6180977
+ 213346 words of memory out of 5000000
+ 10095 multiletter control sequences out of 15000+600000
+ 26308 words of font info for 84 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 38i,7n,42p,295b,1497s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texl
-ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dis
-t/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts
-/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/pa
-latino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr8
-a.pfb>
-Output written on hw4_578.pdf (3 pages, 134969 bytes).
+ 38i,7n,43p,615b,1565s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texlive/texmf-dist/font
+s/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfo
+nts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.
+pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share
+/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
+rw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/
+uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplri8a.pfb>
+
+Output written on final_lw.pdf (6 pages, 175082 bytes).
 PDF statistics:
- 52 PDF objects out of 1000 (max. 8388607)
- 34 compressed objects within 1 object stream
+ 77 PDF objects out of 1000 (max. 8388607)
+ 52 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
