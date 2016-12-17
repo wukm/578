@@ -257,7 +257,6 @@ if __name__ == "__main__":
     # for cheating :-)
     from scipy import linalg
     import matplotlib.pyplot as plt
-    from sys
 
     M = 13
     max_level = 6

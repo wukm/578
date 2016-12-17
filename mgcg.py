@@ -244,55 +244,69 @@ def vcycle(l,b,e0, A, I, Lchol):
 
     return e
 
-def mgcg():
+def mgcg(A, b, n_levels,interpolation_method=None) 
     """
     Multigrid preconditioned Conjugate Gradient Method
     
-    This solves the system Ax=b.
+    This solves the system Ax=b for a particular system A.
+    
+    if n_levels is 0 do unpreconditioned CG
     """
-    pass
+    M = int(np.log2(A.shape[0]))
+    # check that A is actually a power of 2 (no strategy otherwise)
+    N = A.shape[0]
 
+    assert M**2 == N
+    
+    if n_levels != 0: 
+        
+        # build *all* interpolation matrices and store
+        I = tuple((interpolation_method(M,n_levels,l)
+                for l in range(n_levels,1,-1)))
+        a = A
+        A_levels = list() # store all systems
+        for interp in I:
+            A_levels.append(a) # append last system matrix
+
+            # yer done if interp is 0x0 (only an issue if L is larger than M)
+            if not interp.size:
+                break
+
+            a = interp.T @ (a @ interp)
+
+        # now base_case
+        A_levels = a.copy()
+        A_levels = tuple(A_levels) # make static
+
+        # you may check np.allclose(Lchol, linalg.cholesky(A_1,lower=True))
+        Lchol, it_chol = cholesky(A_1)
+
+        Minv = lambda b: vcycle(max_level,b,np.zeros_like(b),A_levels,I,Lchol)    
+
+
+    else:
+        # if n_levels == 0 then do unpreconditioned CG
+        # i.e. preconditioner is the identity
+        Minv = lambda b: b
+
+    pcg_sol, its = pcg(A,b, Minv, return_iterations=True, verbose=False)
+
+    return pcg_sol, its
+
+    
 if __name__ == "__main__":
 
-    # for cheating :-)
-    from scipy import linalg
     import matplotlib.pyplot as plt
-    from sys
 
     M = 13
-    max_level = 6
-    interpolation_method = interpolation_matrix_2
-    N = 2**M
+    n_levels = 6
 
-    A_L = make_system(M)
-    # build *all* interpolation matrices and store
-    I = tuple((interpolation_method(M,max_level,l)
-            for l in range(max_level,1,-1)))
-
-    a = A_L
-    A = list()
-    for interp in I:
-        A.append(a) #append last system matrix
-
-        # only an issue if L is larger than M
-        if not interp.size:
-            break
-        
-        a = interp.T @ (a @ interp)
-    # now base_case
-    A_1 = a.copy()
-    A = tuple(A)
-    # you may check np.allclose(Lchol, linalg.cholesky(A_1,lower=True))
-    Lchol, _ = cholesky(A_1)
-    
-    Minv = lambda b: vcycle(max_level,b,np.zeros_like(b),A,I,Lchol)    
-    # the following is to be used for unpreconditioned CG
-    #Minv = lambda b: b
+    A = make_system(M)
 
     # normalized one vector
-    bee = np.ones((N,1)) / 2**(M/2)
+    bee = np.ones((M**2,1)) / 2**(M/2)
     
-    pcg_sol, its = pcg(A_L,bee,Minv, return_iterations=True, verbose=False)
+    sol, its = mgcg(A, bee, n_levels, interpolation_method=interpolation_matrix_2)
 
     ### this shows effect of preconditioning, looks like two arches
     plt.scatter(np.arange(pcg_sol.size), pcg_sol)
