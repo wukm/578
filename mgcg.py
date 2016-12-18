@@ -48,6 +48,22 @@ def make_system(M):
 
     return A
 
+def make_initial_conditions(M):
+    """
+    returns a normalized one vector of size 2**M
+
+    Input
+    -----
+    M -     size of the system log2
+    
+    Output
+    -----
+    b -     a (2**M , 1) nd.array corresponding to a normalized ones vector
+    """
+    
+    # observing that norm(ones(2**M)) == sqrt(2**M)
+    return np.ones((2**M,1)) / 2**(M/2)
+
 def pcg(A,b, Minv, tol=1e-8, x_init=None, return_iterations=False,
         return_error=False, verbose=False):
     """
@@ -308,9 +324,7 @@ if __name__ == "__main__":
     
     for M,n_levels in test_sizes:
         A = make_system(M)
-        # normalized one vector
-        bee = np.ones((2**M,1)) / 2**(M/2)
-        
+        bee = make_initial_conditions(M)
 
         for int_method in (interpolation_matrix, interpolation_matrix_2, None):
     
