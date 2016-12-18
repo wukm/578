@@ -610,9 +610,17 @@ These times are depicted in the graph below:
 \caption{Measuring run time of solving $Ax=b$ with MGCG when $M=11$, and varying $L$. Ran on a laptop using unoptimized code.}
 \end{center}
 \end{figure}
-
+\pagebreak
 \subsection{An alternative justification}
+Figure 3 shows the effect of the preconditioners using both \textbf{SC1} and \textbf{SC2} on the initial condtions, as compared to the actual found solution of $Ax=b$ with system (1). Note the progress made by \textbf{SC2} after 3 levels is both more than *ever* achieved by \textbf{SC1} when we compare how the initial conditions are transformed.
 
+This picture also gives a strong (yet loose and possibly fallacious) rationalization for the particular nature of the novel step in \textbf{SC2}: After a single round of restriction, the L-1 level restriction/interpolation step \textit{forces} the remaining solutions to be symmetric, with a crease in the middle (refer to implementation of $SC2$ in the spec and also this report). It just so happens that the particular solution to our $Ax=b$ is a very symmetrical solution, so (whatever the specifics), it is clear that the new step in \textbf{SC2} is exactly designed to exploit the \textit{expected} symmetry of the solution to $Ax=b$, whereas (SC1) does not take advantage of the symmetry.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=\linewidth]{minv.png}
+\caption{Measuring the proximity of a sample vector (the initial conditions and initial residual of PCG) to the eventual solution when $M=11$.}
+\end{center}
+\end{figure}
 \end{section}
 \end{document}
 
