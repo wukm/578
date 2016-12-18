@@ -3,7 +3,7 @@
 import numpy as np
 from scipy.linalg import norm, solve
 from itertools import count
-from scipy import sparse
+import scipy.sparse
 
 def make_system(M):
     """
