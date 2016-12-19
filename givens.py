@@ -32,19 +32,26 @@ def givens(x):
 
     # this equals 2**(-52) exactly when x is float64
     eps = np.finfo(x.dtype).eps
+    
+    if np.abs(b) < eps:
+        # np.sign output is 1 or -1
+        c, s = np.sign(a), 0
 
-    if np.abs(a) < eps:
-        c, s = 1, 0
-    elif np.abs(b) > np.abs(a):
-        tau = -a/b
+    elif np.abs(a) < eps:
+        c, s = 0, -np.sign(b)
         
-        s = 1 / ( np.sqrt(1+tau*tau))
-        c = tau*s
+    elif np.abs(a) > np.abs(b):
+        t = b/a
+        u = np.sign(a)*np.abs(np.sqrt(1+t*t))
+        c = 1/u
+        s = -c*t
+        
     else:
-        tau = -b/a
-        c = 1 / ( np.sqrt(1+tau*tau))
-        s = tau*c
-
+        t = a/b
+        u = np.sign(b)*np.abs(np.sqrt(1+t*t))
+        s = -1/u
+        c = -s*t
+    
     return c,s
 
 def givens_qr(A):
